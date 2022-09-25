@@ -1,4 +1,5 @@
 const Category = require('../models/category');
+const slugf = require('slug');
 
 exports.createCategory = async (req, res) => {
     try {
@@ -21,6 +22,10 @@ exports.getCategories = async (req, res) => {
     }
 }
 
+function slugeo(cosa) {
+    return slugf(cosa) + '-' + (Math.random() * Math.pow(36, 6) | 0);
+}
+
 exports.updateCategory = async (req, res) => {
     try {
         const category = await Category.findOne({ "slug": req.params.slug });
@@ -28,6 +33,8 @@ exports.updateCategory = async (req, res) => {
         if (!category) {
             res.status(404).json({ msg: "No existe la categoria" });
         } else {
+            req.body.slug = slugeo(req.body.name);
+
             const newCategory = await Category.findOneAndUpdate({ "slug": req.params.slug }, req.body, { new: true });
             res.json(newCategory);
         }
@@ -36,7 +43,6 @@ exports.updateCategory = async (req, res) => {
         res.status(500).send("Hubo un error");
     }
 }
-
 exports.deleteCategory = async (req, res) => {
     try {
         const category = await Category.findOne({ "slug": req.params.slug });

@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const slugf = require('slug');
 
 exports.createProduct = async (req, res) => {
     try {
@@ -21,6 +22,10 @@ exports.getProducts = async (req, res) => {
     }
 }
 
+function slugeo(cosa) {
+    return slugf(cosa) + '-' + (Math.random() * Math.pow(36, 6) | 0);
+}
+
 exports.updateProduct = async (req, res) => {
     try {
         const product = await Product.findOne({ "slug": req.params.slug });
@@ -28,6 +33,8 @@ exports.updateProduct = async (req, res) => {
         if (!product) {
             res.status(404).json({ msg: "No existe el producto" });
         } else {
+            req.body.slug = slugeo(req.body.name);
+
             const newProduct = await Product.findOneAndUpdate({ "slug": req.params.slug }, req.body, { new: true });
             res.json(newProduct);
         }
