@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 import { CrudComponent } from './crud.component';
 import { CrudRoutingModule } from './crud-routing.module';
 import { SharedModule } from '../shared/shared.module';
+// import { ListCategoriesComponent } from '../shared/list-categories/list-categories.component';
 
 
 @NgModule({
   declarations: [
-    CrudComponent
+    CrudComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
-    CrudRoutingModule
+    CrudRoutingModule,
   ]
 })
-export class HomeModule { }
+export class CrudModule { }

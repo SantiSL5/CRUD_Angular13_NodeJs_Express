@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  urlProduct: 'http://popallawBackend:3000/api/product',
-  urlCategory: 'http://popallawBackend:3000/api/category'
+  api_url: "http://localhost:3000/api/",
+  urlProduct: 'http://localhost:3000/api/product',
+  urlCategory: 'http://localhost:3000/api/category'
 };
 
 /*
