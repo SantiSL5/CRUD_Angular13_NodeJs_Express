@@ -14,6 +14,9 @@ export class ListCategoriesComponent implements OnInit {
 
   constructor(private _categoryService: CategoryService) { }
 
+  refreshList(): void {
+    this.getAllCategories();
+  }
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -22,9 +25,21 @@ export class ListCategoriesComponent implements OnInit {
   getAllCategories(): void {
     this._categoryService.query().subscribe(data => {
       this.listCategories = data;
-      console.log(data);
     });
   }
+
+  deleteCategory(slug: string): void {
+
+    this._categoryService.destroy(slug).subscribe({
+      next: (res) => {
+        this.refreshList();
+      },
+      error: (e) => console.error(e)
+    });
+  }
+
+  
+
 }
 
 

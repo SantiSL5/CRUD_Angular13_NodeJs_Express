@@ -1,0 +1,23 @@
+.list {
+  text-align: left;
+  max-width: 750px;
+  margin: auto;
+}
+
+a {
+  padding-right: 15px;
+  float: right;
+  text-decoration: none;
+}
+
+.details {
+  color: green;
+}
+
+.update {
+  color: blue;
+}
+
+.delete {
+  color: red;
+}
