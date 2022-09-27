@@ -15,7 +15,7 @@ export class CategoryService {
     private apiService: ApiService
   ) { }
 
-  query(): Observable<{ categories: Category[] }> {
+  query(): Observable<Category[]> {
     const params = {};
 
     return this.apiService.get(
