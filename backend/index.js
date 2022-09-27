@@ -12,6 +12,7 @@ app.use(cors());
 
 app.use(express.json());
 
+require('./models');
 app.use(require('./routes'));
 
 app.listen( port, () => {

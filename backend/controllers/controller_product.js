@@ -1,4 +1,5 @@
-const Product = require('../models/product');
+const mongoose = require('mongoose');
+const Product = mongoose.model('Product');
 const slugf = require('slug');
 
 exports.createProduct = async (req, res) => {

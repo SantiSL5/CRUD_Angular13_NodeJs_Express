@@ -1,4 +1,6 @@
-const Category = require('../models/category');
+
+const mongoose = require('mongoose');
+const Category = mongoose.model('Category');
 const slugf = require('slug');
 
 exports.createCategory = async (req, res) => {
