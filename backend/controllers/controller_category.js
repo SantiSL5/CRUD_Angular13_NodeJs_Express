@@ -1,7 +1,8 @@
-
 const mongoose = require('mongoose');
 const Category = mongoose.model('Category');
 const slugf = require('slug');
+const FormatSuccess = require('../utils/responseApi.js').FormatSuccess;
+const FormatError = require('../utils/responseApi.js').FormatError;
 
 exports.createCategory = async (req, res) => {
     try {
@@ -10,7 +11,7 @@ exports.createCategory = async (req, res) => {
         res.send(category);
     } catch (error) {
         console.log(error);
-        res.status(500).send("Hubo un error");
+        res.status(500).send(FormatError("Error occurred", res.statusCode));
     }
 }
 
@@ -20,7 +21,7 @@ exports.getCategories = async (req, res) => {
         res.json(categories);
     } catch (error) {
         console.log(error);
-        res.status(500).send("Hubo un error");
+        res.status(500).send(FormatError("Error occurred", res.statusCode));
     }
 }
 
@@ -33,16 +34,16 @@ exports.updateCategory = async (req, res) => {
         const category = await Category.findOne({ "slug": req.params.slug });
 
         if (!category) {
-            res.status(404).json({ msg: "No existe la categoria" });
+            res.status(404).send(FormatError("Category not found", res.statusCode));
         } else {
             req.body.slug = slugeo(req.body.name);
 
             const newCategory = await Category.findOneAndUpdate({ "slug": req.params.slug }, req.body, { new: true });
-            res.json(newCategory);
+            res.json(FormatSuccess("Category updated", newCategory));
         }
     } catch (error) {
         console.log(req);
-        res.status(500).send("Hubo un error");
+        res.status(500).send(FormatError("Error occurred", res.statusCode));
     }
 }
 exports.deleteCategory = async (req, res) => {
@@ -50,14 +51,14 @@ exports.deleteCategory = async (req, res) => {
         const category = await Category.findOne({ "slug": req.params.slug });
 
         if (!category) {
-            res.status(404).json({ msg: "No existe la categoria" });
+            res.status(404).send(FormatError("Category not found", res.statusCode));
         } else {
             await Category.findOneAndRemove({ "slug": req.params.slug });
-            res.json({ msg: "Producto " + "'" + category.name + "'" + " eliminado con éxito" });
+            res.json({ msg: "Category " + "'" + category.name + "'" + " deleted successfuly" });
         }
     } catch (error) {
         console.log(error);
-        res.status(500).send("Hubo un error");
+        res.status(500).send(FormatError("Error occurred", res.statusCode));
     }
 }
 
