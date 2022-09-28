@@ -1,7 +1,7 @@
 .list {
   text-align: left;
   max-width: 750px;
-  margin: auto;
+  margin: 10px;
 }
 
 a {
@@ -20,4 +20,19 @@ a {
 
 .delete {
   color: red;
+}
+
+.detailsCat {
+  width: 100px;
+  float: right;
+  /* border-radius: 20px;
+  border: 1px black solid; */
+}
+
+.margin {
+  margin-left: 45px;
+}
+
+span {
+  font-size: 150%;
 }

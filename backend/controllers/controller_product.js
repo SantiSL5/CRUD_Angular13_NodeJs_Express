@@ -3,12 +3,13 @@ const Product = mongoose.model('Product');
 const slugf = require('slug');
 const FormatSuccess = require('../utils/responseApi.js').FormatSuccess;
 const FormatError = require('../utils/responseApi.js').FormatError;
+const FormatObject = require('../utils/responseApi.js').FormatObject;
 
 exports.createProduct = async (req, res) => {
     try {
         const product = new Product(req.body);
         await product.save();
-        res.send(product);
+        res.json(FormatObject(product));
     } catch (error) {
         console.log(error);
         res.status(500).send(FormatError("Error occurred", res.statusCode));
@@ -18,7 +19,7 @@ exports.createProduct = async (req, res) => {
 exports.getProducts = async (req, res) => {
     try {
         const products = await Product.find();
-        res.json(products);
+        res.json(FormatObject(products));
     } catch (error) {
         console.log(error);
         res.status(500).send(FormatError("Error occurred", res.statusCode));

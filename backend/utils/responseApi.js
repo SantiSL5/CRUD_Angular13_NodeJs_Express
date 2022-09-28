@@ -21,4 +21,8 @@ const FormatSuccess = (msg, obj = null) => {
     }
 }//FormatSucces
 
-module.exports = { FormatError: FormatError, FormatSuccess: FormatSuccess };
+const FormatObject = (obj) => {
+    return obj;
+}//FormatObject
+
+module.exports = { FormatError: FormatError, FormatSuccess: FormatSuccess, FormatObject: FormatObject };

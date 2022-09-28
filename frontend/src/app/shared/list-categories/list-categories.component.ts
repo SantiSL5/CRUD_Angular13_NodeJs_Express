@@ -11,14 +11,16 @@ import { CategoryService } from 'src/app/core/services/category.service';
 export class ListCategoriesComponent implements OnInit {
 
   listCategories: Category[] = [];
+  viewDetails: String = "hidden";
+  detailedCategory!: Category;
 
   constructor(private _categoryService: CategoryService) { }
 
-  refreshList(): void {
+  ngOnInit(): void {
     this.getAllCategories();
   }
 
-  ngOnInit(): void {
+  refreshList(): void {
     this.getAllCategories();
   }
 
@@ -29,7 +31,6 @@ export class ListCategoriesComponent implements OnInit {
   }
 
   deleteCategory(slug: string): void {
-
     this._categoryService.destroy(slug).subscribe({
       next: (res) => {
         this.refreshList();
@@ -38,7 +39,19 @@ export class ListCategoriesComponent implements OnInit {
     });
   }
 
-  
+  // showDetails(category: Category): void {
+  //   this.viewDetails = "show";
+  //   // this.detailedCategory = category;
+  //   console.log(typeof(category));
+  // }
+
+  showDetails(slug: string): void {
+    this.viewDetails = "show";
+    this._categoryService.get(slug).subscribe(data => {
+      console.log(data);
+      this.detailedCategory = data;
+    });
+  }
 
 }
 

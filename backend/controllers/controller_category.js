@@ -3,12 +3,13 @@ const Category = mongoose.model('Category');
 const slugf = require('slug');
 const FormatSuccess = require('../utils/responseApi.js').FormatSuccess;
 const FormatError = require('../utils/responseApi.js').FormatError;
+const FormatObject = require('../utils/responseApi.js').FormatObject;
 
 exports.createCategory = async (req, res) => {
     try {
         const category = new Category(req.body);
         await category.save();
-        res.send(category);
+        res.json(FormatObject(category));
     } catch (error) {
         console.log(error);
         res.status(500).send(FormatError("Error occurred", res.statusCode));
@@ -18,7 +19,17 @@ exports.createCategory = async (req, res) => {
 exports.getCategories = async (req, res) => {
     try {
         const categories = await Category.find();
-        res.json(categories);
+        res.json(FormatObject(categories));
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(FormatError("Error occurred", res.statusCode));
+    }
+}
+
+exports.getCategory = async (req, res) => {
+    try {
+        const category = await Category.findOne({ "slug": req.params.slug });
+        res.json(FormatObject(category));
     } catch (error) {
         console.log(error);
         res.status(500).send(FormatError("Error occurred", res.statusCode));

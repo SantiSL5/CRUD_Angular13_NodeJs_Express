@@ -1,1 +1,4 @@
-<app-list-categories></app-list-categories>
+<button (click)="view = 'list'">List</button>
+<button (click)="view = 'create'">Create category</button>
+<app-create-category *ngIf="view === 'create'"></app-create-category>
+<app-list-categories *ngIf="view === 'list'"></app-list-categories>

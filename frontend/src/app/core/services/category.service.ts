@@ -25,7 +25,7 @@ export class CategoryService {
   }
 
   get(slug: string): Observable<Category> {
-    return this.apiService.get('/category/' + slug).pipe(map(data => data.category));
+    return this.apiService.get('/category/' + slug);
   }
 
   destroy(slug: string) {
