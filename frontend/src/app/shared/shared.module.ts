@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
+import { ListProductsComponent } from './list-products/list-products.component';
 import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
   declarations: [
     ListCategoriesComponent,
+    ListProductsComponent,
     HeaderComponent
   ],
   imports: [
@@ -19,6 +21,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   exports: [
     ListCategoriesComponent,
+    ListProductsComponent,
     HeaderComponent
   ]
 })

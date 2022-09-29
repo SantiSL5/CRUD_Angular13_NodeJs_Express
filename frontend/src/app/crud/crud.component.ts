@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CrudComponent implements OnInit {
 
   view: String = "list";
+  crud: String = "";
 
   constructor() { }
 

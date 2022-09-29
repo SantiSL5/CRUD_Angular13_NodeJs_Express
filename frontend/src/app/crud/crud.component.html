@@ -1,4 +1,15 @@
-<button (click)="view = 'list'">List</button>
-<button (click)="view = 'create'">Create category</button>
-<app-create-category *ngIf="view === 'create'"></app-create-category>
-<app-list-categories *ngIf="view === 'list'"></app-list-categories>
+<button (click)="crud = 'category'">Categories</button>
+<button (click)="crud = 'product'">Products</button>
+
+<div class="container mt-3" *ngIf="crud === 'category'">
+    <button (click)="view = 'list'">List</button>
+    <button (click)="view = 'create'">Create category</button>
+    <app-create-category *ngIf="view === 'create'"></app-create-category>
+    <app-list-categories *ngIf="view === 'list'"></app-list-categories>
+</div>
+<div class="container mt-3" *ngIf="crud === 'product'">
+    <button (click)="view = 'list'">List</button>
+    <button (click)="view = 'create'">Create product</button>
+    <!-- <app-create-product *ngIf="view === 'create'"></app-create-product> -->
+    <app-list-products *ngIf="view === 'list'"></app-list-products>
+</div>

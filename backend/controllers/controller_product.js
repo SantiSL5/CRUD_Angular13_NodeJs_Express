@@ -26,6 +26,16 @@ exports.getProducts = async (req, res) => {
     }
 }
 
+exports.getProduct = async (req, res) => {
+    try {
+        const product = await Product.findOne({ "slug": req.params.slug });
+        res.json(FormatObject(product));
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(FormatError("Error occurred", res.statusCode));
+    }
+}
+
 function slugeo(cosa) {
     return slugf(cosa) + '-' + (Math.random() * Math.pow(36, 6) | 0);
 }

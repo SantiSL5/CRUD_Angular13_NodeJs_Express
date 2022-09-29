@@ -39,12 +39,6 @@ export class ListCategoriesComponent implements OnInit {
     });
   }
 
-  // showDetails(category: Category): void {
-  //   this.viewDetails = "show";
-  //   // this.detailedCategory = category;
-  //   console.log(typeof(category));
-  // }
-
   showDetails(slug: string): void {
     this.viewDetails = "show";
     this._categoryService.get(slug).subscribe(data => {
