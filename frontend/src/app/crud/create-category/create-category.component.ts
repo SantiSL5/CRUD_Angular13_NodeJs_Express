@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/core/models/category';
 import { CategoryService } from 'src/app/core/services/category.service';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-category',
@@ -11,22 +11,31 @@ import { FormsModule } from '@angular/forms';
 
 export class CreateCategoryComponent implements OnInit {
 
-  createCategory: Category[] = [];
+  errors: [] = [];
+  isSubmitting = false;
+  createForm: FormGroup;
 
-  constructor(private _categoryService: CategoryService) { }
+  constructor(
+    private _categoryService: CategoryService,
+    private fb: FormBuilder
+  ) {
+    // use FormBuilder to create a form group
+    this.createForm = this.fb.group({
+      'name': [''],
+      'photo': ['']
+    });
+  }
 
   ngOnInit(): void {
   }
 
-  saveCategory(category: Category): void {
-
-    this._categoryService.save(category).subscribe({
+  createCategory(): void {
+    this._categoryService.save(this.createForm.value).subscribe({
       next: (res) => {
         console.log('Category added');
       },
       error: (e) => console.error(e)
     });
   }
-
 
 }
