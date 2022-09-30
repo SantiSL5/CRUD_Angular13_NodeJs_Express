@@ -33,6 +33,6 @@ export class CategoryService {
   }
 
   save(category: Category) {
-    return this.apiService.post('/category/', category).pipe(map(data => data));
+    return this.apiService.post('/category/', category);
   }
 }
