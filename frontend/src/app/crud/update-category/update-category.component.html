@@ -1,0 +1,19 @@
+<div>
+    <form [formGroup]="updateFormCategory" (ngSubmit)="updateCategory()">
+        <fieldset class="form-group">
+            <input
+                formControlName="name"
+                placeholder="name"
+                class="form-control form-control-lg"
+                type="text">
+        </fieldset>
+        <fieldset class="form-group">
+            <input
+                formControlName="photo"
+                placeholder="photo"
+                class="form-control form-control-lg"
+                type="text" />
+        </fieldset>
+        <button class="btn btn-lg btn-primary pull-xs-right" type="submit">Create</button>
+    </form>
+</div>

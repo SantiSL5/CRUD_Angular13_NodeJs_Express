@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/core/models/category';
 import { CategoryService } from 'src/app/core/services/category.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list-categories',
@@ -10,6 +11,7 @@ import { CategoryService } from 'src/app/core/services/category.service';
 
 export class ListCategoriesComponent implements OnInit {
 
+  @Output() upCategory = new EventEmitter<string>();
   listCategories: Category[] = [];
   viewDetails: String = "hidden";
   detailedCategory!: Category;
@@ -37,6 +39,10 @@ export class ListCategoriesComponent implements OnInit {
       },
       error: (e) => console.error(e)
     });
+  }
+
+  updateCategory(slug: string): void {
+    this.upCategory.emit(slug);
   }
 
   showDetails(slug: string): void {

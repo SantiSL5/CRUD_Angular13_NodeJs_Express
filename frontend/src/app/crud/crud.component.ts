@@ -9,10 +9,15 @@ export class CrudComponent implements OnInit {
 
   view: String = "list";
   crud: String = "";
+  slugUpdate: String = "";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  updateCategory(slug: string) {
+    this.view= "update"
+
+  }
 }

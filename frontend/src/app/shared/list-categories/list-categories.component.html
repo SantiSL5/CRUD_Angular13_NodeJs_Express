@@ -5,7 +5,7 @@
             <li class="list-group-item" *ngFor="let category of listCategories">
                 {{ category.name }}
                 <a class="delete" (click)="deleteCategory(category.slug)">Delete</a>
-                <a class="update">Update</a>
+                <a class="update" (click)="updateCategory(category.slug)">Update</a>
                 <a class="details" (click)="showDetails(category.slug)">Details</a>
             </li>
         </ul>

@@ -11,8 +11,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class CreateCategoryComponent implements OnInit {
 
-  errors: [] = [];
-  isSubmitting = false;
   createFormCategory: FormGroup;
 
   constructor(
@@ -27,6 +25,10 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.createFormCategory = this.fb.group({
+      'name': [''],
+      'photo': ['']
+    });
   }
 
   createCategory(): void {

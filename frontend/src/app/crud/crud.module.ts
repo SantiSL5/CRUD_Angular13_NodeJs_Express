@@ -6,13 +6,17 @@ import { SharedModule } from '../shared/shared.module';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { UpdateCategoryComponent } from './update-category/update-category.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 
 @NgModule({
   declarations: [
     CrudComponent,
     CreateCategoryComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    UpdateCategoryComponent,
+    UpdateProductComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +25,9 @@ import { CreateProductComponent } from './create-product/create-product.componen
     ReactiveFormsModule
   ], exports: [
     CreateCategoryComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    UpdateCategoryComponent,
+    UpdateProductComponent
   ]
 })
 export class CrudModule { }

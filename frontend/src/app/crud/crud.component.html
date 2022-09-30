@@ -5,7 +5,7 @@
     <button (click)="view = 'list'">List</button>
     <button (click)="view = 'create'">Create category</button>
     <app-create-category *ngIf="view === 'create'"></app-create-category>
-    <app-list-categories *ngIf="view === 'list'"></app-list-categories>
+    <app-list-categories *ngIf="view === 'list'" (upCategory)="updateCategory($event)"></app-list-categories>
 </div>
 <div class="container mt-3" *ngIf="crud === 'product'">
     <button (click)="view = 'list'">List</button>
