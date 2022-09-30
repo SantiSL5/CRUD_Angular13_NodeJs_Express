@@ -32,7 +32,7 @@ export class CategoryService {
     return this.apiService.delete('/category/' + slug);
   }
 
-  save(category: Category) {
+  save(category: Category): Observable<Category> {
     return this.apiService.post('/category/', category);
   }
 }

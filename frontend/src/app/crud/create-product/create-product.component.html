@@ -1,5 +1,5 @@
 <div>
-    <form [formGroup]="createFormCategory" (ngSubmit)="createCategory()">
+    <form [formGroup]="createFormProduct" (ngSubmit)="createProduct()">
         <fieldset class="form-group">
             <input
                 formControlName="name"
@@ -9,8 +9,8 @@
         </fieldset>
         <fieldset class="form-group">
             <input
-                formControlName="photo"
-                placeholder="photo"
+                formControlName="price"
+                placeholder="price"
                 class="form-control form-control-lg"
                 type="text" />
         </fieldset>

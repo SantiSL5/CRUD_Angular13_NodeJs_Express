@@ -13,14 +13,14 @@ export class CreateCategoryComponent implements OnInit {
 
   errors: [] = [];
   isSubmitting = false;
-  createForm: FormGroup;
+  createFormCategory: FormGroup;
 
   constructor(
     private _categoryService: CategoryService,
     private fb: FormBuilder
   ) {
     // use FormBuilder to create a form group
-    this.createForm = this.fb.group({
+    this.createFormCategory = this.fb.group({
       'name': [''],
       'photo': ['']
     });
@@ -30,7 +30,7 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   createCategory(): void {
-    this._categoryService.save(this.createForm.value).subscribe({
+    this._categoryService.save(this.createFormCategory.value).subscribe({
       next: (res) => {
         console.log('Category added');
       },

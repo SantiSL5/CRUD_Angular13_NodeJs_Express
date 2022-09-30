@@ -33,11 +33,6 @@ export class ProductService {
   }
 
   save(product: Product): Observable<Product> {
-    if (product.slug) {
-      return this.apiService.put('/product/' + product.slug, { product: product }).pipe(map(data => data.product));
-
-    } else {
-      return this.apiService.post('/product/', { product: product }).pipe(map(data => data.product));
-    }
+    return this.apiService.post('/product/', product);
   }
 }

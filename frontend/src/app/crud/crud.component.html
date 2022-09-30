@@ -10,6 +10,6 @@
 <div class="container mt-3" *ngIf="crud === 'product'">
     <button (click)="view = 'list'">List</button>
     <button (click)="view = 'create'">Create product</button>
-    <!-- <app-create-product *ngIf="view === 'create'"></app-create-product> -->
+    <app-create-product *ngIf="view === 'create'"></app-create-product>
     <app-list-products *ngIf="view === 'list'"></app-list-products>
 </div>

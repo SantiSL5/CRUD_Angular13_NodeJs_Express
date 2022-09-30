@@ -5,12 +5,14 @@ import { CrudRoutingModule } from './crud-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 
 @NgModule({
   declarations: [
     CrudComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    CreateProductComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CrudRoutingModule,
     ReactiveFormsModule
   ], exports: [
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    CreateProductComponent
   ]
 })
 export class CrudModule { }
