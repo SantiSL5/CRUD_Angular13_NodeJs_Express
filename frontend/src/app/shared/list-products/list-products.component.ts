@@ -39,10 +39,9 @@ export class ListProductsComponent implements OnInit {
   }
 
   showDetails(slug: string): void {
-    this.viewDetails = "show";
     this._productService.get(slug).subscribe(data => {
-      console.log(data);
       this.detailedProduct = data;
+      this.viewDetails = "show";
     });
   }
 

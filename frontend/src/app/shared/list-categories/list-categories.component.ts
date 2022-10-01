@@ -46,10 +46,9 @@ export class ListCategoriesComponent implements OnInit {
   }
 
   showDetails(slug: string): void {
-    this.viewDetails = "show";
     this._categoryService.get(slug).subscribe(data => {
-      console.log(data);
       this.detailedCategory = data;
+      this.viewDetails = "show";
     });
   }
 

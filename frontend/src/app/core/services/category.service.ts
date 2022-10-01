@@ -35,4 +35,8 @@ export class CategoryService {
   save(category: Category): Observable<Category> {
     return this.apiService.post('/category/', category);
   }
+
+  put(slug: string, category: Category): Observable<Category> {
+    return this.apiService.put('/category/' + slug, category);
+  }
 }

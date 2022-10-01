@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-crud',
@@ -9,7 +9,7 @@ export class CrudComponent implements OnInit {
 
   view: String = "list";
   crud: String = "";
-  slugUpdate: String = "";
+  slugCatUpdate: string = "";
 
   constructor() { }
 
@@ -18,6 +18,6 @@ export class CrudComponent implements OnInit {
 
   updateCategory(slug: string) {
     this.view= "update"
-
+    this.slugCatUpdate=slug;
   }
 }

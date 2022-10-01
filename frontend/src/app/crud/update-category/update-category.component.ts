@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Category } from 'src/app/core/models/category';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class UpdateCategoryComponent implements OnInit {
 
   updateFormCategory: FormGroup;
+  @Input() slug  = '';
 
   constructor(
     private _categoryService: CategoryService,
@@ -24,11 +25,17 @@ export class UpdateCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this._categoryService.get(this.slug).subscribe(data => {
+      this.updateFormCategory = this.fb.group({
+        'name': [data.name],
+        'photo': [data.photo]
+      });
+      console.log(data);
+    });
   }
 
   updateCategory(): void {
-    this._categoryService.save(this.updateFormCategory.value).subscribe({
+    this._categoryService.put(this.slug,this.updateFormCategory.value).subscribe({
       next: (res) => {
         console.log('Category updated');
       },
