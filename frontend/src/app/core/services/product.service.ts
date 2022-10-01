@@ -35,4 +35,8 @@ export class ProductService {
   save(product: Product): Observable<Product> {
     return this.apiService.post('/product/', product);
   }
+
+  put(slug: string, product: Product): Observable<Product> {
+    return this.apiService.put('/product/' + slug, product);
+  }
 }

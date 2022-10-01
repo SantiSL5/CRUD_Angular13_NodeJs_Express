@@ -10,6 +10,7 @@ export class CrudComponent implements OnInit {
   view: String = "list";
   crud: String = "";
   slugCatUpdate: string = "";
+  slugProdUpdate: string = "";
 
   constructor() { }
 
@@ -19,5 +20,10 @@ export class CrudComponent implements OnInit {
   updateCategory(slug: string) {
     this.view= "update"
     this.slugCatUpdate=slug;
+  }
+
+  updateProduct(slug: string) {
+    this.view= "update"
+    this.slugProdUpdate=slug;
   }
 }

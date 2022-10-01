@@ -12,5 +12,6 @@
     <button (click)="view = 'list'">List</button>
     <button (click)="view = 'create'">Create product</button>
     <app-create-product *ngIf="view === 'create'"></app-create-product>
-    <app-list-products *ngIf="view === 'list'"></app-list-products>
+    <app-list-products *ngIf="view === 'list'" (upProduct)="updateProduct($event)"></app-list-products>
+    <app-update-product *ngIf="view === 'update'" [slug]="slugProdUpdate"></app-update-product>
 </div>

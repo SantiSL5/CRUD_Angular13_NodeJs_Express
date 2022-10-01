@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/product.service';
 
@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/core/services/product.service';
 })
 export class ListProductsComponent implements OnInit {
 
+  @Output() upProduct = new EventEmitter<string>();
   listProducts: Product[] = [];
   viewDetails: String = "hidden";
   detailedProduct!: Product;
@@ -36,6 +37,10 @@ export class ListProductsComponent implements OnInit {
       },
       error: (e) => console.error(e)
     });
+  }
+
+  updateProduct(slug: string): void {
+    this.upProduct.emit(slug);
   }
 
   showDetails(slug: string): void {

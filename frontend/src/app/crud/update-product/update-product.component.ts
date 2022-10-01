@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/core/models/product';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/core/services/product.service';
@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/core/services/product.service';
 export class UpdateProductComponent implements OnInit {
 
   updateFormProduct: FormGroup;
+  @Input() slug  = '';
 
   constructor(
     private _productService: ProductService,
@@ -24,12 +25,19 @@ export class UpdateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._productService.get(this.slug).subscribe(data => {
+      this.updateFormProduct = this.fb.group({
+        'name': [data.name],
+        'price': [data.price]
+      });
+      console.log(data);
+    });
   }
 
   updateProduct(): void {
-    this._productService.save(this.updateFormProduct.value).subscribe({
+    this._productService.put(this.slug,this.updateFormProduct.value).subscribe({
       next: (res) => {
-        console.log('Category added');
+        console.log('Product updated');
       },
       error: (e) => console.error(e)
     });
