@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/core/models/product';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/core/services/product.service';
@@ -12,6 +12,7 @@ export class UpdateProductComponent implements OnInit {
 
   updateFormProduct: FormGroup;
   @Input() slug  = '';
+  @Output() list = new EventEmitter();
 
   constructor(
     private _productService: ProductService,
@@ -38,6 +39,7 @@ export class UpdateProductComponent implements OnInit {
     this._productService.put(this.slug,this.updateFormProduct.value).subscribe({
       next: (res) => {
         console.log('Product updated');
+        this.list.emit();
       },
       error: (e) => console.error(e)
     });

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Category } from 'src/app/core/models/category';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class CreateCategoryComponent implements OnInit {
-
+  @Output() list = new EventEmitter();
   createFormCategory: FormGroup;
 
   constructor(
@@ -35,6 +35,7 @@ export class CreateCategoryComponent implements OnInit {
     this._categoryService.save(this.createFormCategory.value).subscribe({
       next: (res) => {
         console.log('Category added');
+        this.list.emit();
       },
       error: (e) => console.error(e)
     });

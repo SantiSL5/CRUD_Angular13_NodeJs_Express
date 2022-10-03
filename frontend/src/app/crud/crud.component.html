@@ -4,14 +4,14 @@
 <div class="container mt-3" *ngIf="crud === 'category'">
     <button (click)="view = 'list'">List</button>
     <button (click)="view = 'create'">Create category</button>
-    <app-create-category *ngIf="view === 'create'"></app-create-category>
+    <app-create-category *ngIf="view === 'create'" (list)="listEvent()"></app-create-category>
     <app-list-categories *ngIf="view === 'list'" (upCategory)="updateCategory($event)"></app-list-categories>
-    <app-update-category *ngIf="view === 'update'" [slug]="slugCatUpdate"></app-update-category>
+    <app-update-category *ngIf="view === 'update'" [slug]="slugCatUpdate" (list)="listEvent()"></app-update-category>
 </div>
 <div class="container mt-3" *ngIf="crud === 'product'">
     <button (click)="view = 'list'">List</button>
     <button (click)="view = 'create'">Create product</button>
-    <app-create-product *ngIf="view === 'create'"></app-create-product>
+    <app-create-product *ngIf="view === 'create'" (list)="listEvent()"></app-create-product>
     <app-list-products *ngIf="view === 'list'" (upProduct)="updateProduct($event)"></app-list-products>
-    <app-update-product *ngIf="view === 'update'" [slug]="slugProdUpdate"></app-update-product>
+    <app-update-product *ngIf="view === 'update'" [slug]="slugProdUpdate" (list)="listEvent()"></app-update-product>
 </div>

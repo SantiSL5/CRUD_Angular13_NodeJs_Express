@@ -26,4 +26,8 @@ export class CrudComponent implements OnInit {
     this.view= "update"
     this.slugProdUpdate=slug;
   }
+
+  listEvent() {
+    this.view= "list"
+  }
 }
