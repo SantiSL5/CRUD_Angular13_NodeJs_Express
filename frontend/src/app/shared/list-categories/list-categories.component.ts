@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/core/models/category';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { Output, EventEmitter } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-categories',
@@ -16,7 +17,10 @@ export class ListCategoriesComponent implements OnInit {
   viewDetails: String = "hidden";
   detailedCategory!: Category;
 
-  constructor(private _categoryService: CategoryService) { }
+  constructor(
+    private _categoryService: CategoryService,
+    private toastrService: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -35,6 +39,7 @@ export class ListCategoriesComponent implements OnInit {
   deleteCategory(slug: string): void {
     this._categoryService.destroy(slug).subscribe({
       next: (res) => {
+        this.toastrService.success('Category deleted', 'Category deleted');
         this.refreshList();
       },
       error: (e) => console.error(e)

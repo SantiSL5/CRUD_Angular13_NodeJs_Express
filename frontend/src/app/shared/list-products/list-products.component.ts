@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-products',
@@ -14,7 +15,10 @@ export class ListProductsComponent implements OnInit {
   viewDetails: String = "hidden";
   detailedProduct!: Product;
 
-  constructor(private _productService: ProductService) { }
+  constructor(
+    private _productService: ProductService,
+    private toastrService: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -33,6 +37,7 @@ export class ListProductsComponent implements OnInit {
   deleteProduct(slug: string): void {
     this._productService.destroy(slug).subscribe({
       next: (res) => {
+        this.toastrService.success('Product deleted', 'Product deleted');
         this.refreshList();
       },
       error: (e) => console.error(e)

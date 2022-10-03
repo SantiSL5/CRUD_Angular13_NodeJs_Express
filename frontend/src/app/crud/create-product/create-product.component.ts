@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@ang
 import { Product } from 'src/app/core/models/product';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/core/services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-product',

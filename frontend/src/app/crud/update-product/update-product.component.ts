@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { Product } from 'src/app/core/models/product';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/core/services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-product',
@@ -16,7 +17,8 @@ export class UpdateProductComponent implements OnInit {
 
   constructor(
     private _productService: ProductService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastrService: ToastrService
   ) {
     // use FormBuilder to create a form group
     this.updateFormProduct = this.fb.group({
@@ -38,7 +40,7 @@ export class UpdateProductComponent implements OnInit {
   updateProduct(): void {
     this._productService.put(this.slug,this.updateFormProduct.value).subscribe({
       next: (res) => {
-        console.log('Product updated');
+        this.toastrService.success('Product updated', 'Product updated');
         this.list.emit();
       },
       error: (e) => console.error(e)

@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { Category } from 'src/app/core/models/category';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-category',
@@ -16,7 +17,8 @@ export class UpdateCategoryComponent implements OnInit {
 
   constructor(
     private _categoryService: CategoryService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastrService: ToastrService
   ) {
     // use FormBuilder to create a form group
     this.updateFormCategory = this.fb.group({
@@ -38,7 +40,7 @@ export class UpdateCategoryComponent implements OnInit {
   updateCategory(): void {
     this._categoryService.put(this.slug,this.updateFormCategory.value).subscribe({
       next: (res) => {
-        console.log('Category updated');
+        this.toastrService.success('Category updated', 'Category updated');
         this.list.emit();
       },
       error: (e) => console.error(e)
